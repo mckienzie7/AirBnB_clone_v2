@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Defines the State class."""
+"""
+Defines the State class
+"""
+
 import models
 from os import getenv
 from models.base_model import BaseModel, Base
@@ -16,7 +19,7 @@ class State(BaseModel, Base):
 
     Attributes:
         __tablename__ (str): The name of the MySQL table to store States.
-        name (sqlalchemy String): The name of the State.
+        name (sqlalchemy str): The name of the State.
         cities (sqlalchemy relationship): The State-City relationship.
     """
     __tablename__ = "states"

@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""Defines the Amenity class."""
+"""
+Defines the Amenity class
+"""
+
+import models
 from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String
@@ -13,7 +17,7 @@ class Amenity(BaseModel, Base):
 
     Attributes:
         __tablename__ (str): The name of the MySQL table to store Amenities.
-        name (sqlalchemy String): The amenity name.
+        name (sqlalchemy str): The amenity name.
         place_amenities (sqlalchemy relationship): Place-Amenity relationship.
     """
     __tablename__ = "amenities"

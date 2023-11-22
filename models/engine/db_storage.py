@@ -1,6 +1,10 @@
 #!/usr/bin/python3
-"""Defines the DBStorage engine."""
+"""
+Defines the DBStorage engine
+"""
+
 from os import getenv
+import models
 from models.base_model import BaseModel, Base
 from models.amenity import Amenity
 from models.city import City

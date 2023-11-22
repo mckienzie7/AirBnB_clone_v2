@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines the User class."""
+import models
 from models.base_model import Base
 from models.base_model import BaseModel
 import sqlalchemy

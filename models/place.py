@@ -31,14 +31,14 @@ class Place(BaseModel, Base):
 
     Attributes:
         __tablename__ (str): The name of the MySQL table to store places.
-        city_id (sqlalchemy String): The place's city id.
-        user_id (sqlalchemy String): The place's user id.
-        name (sqlalchemy String): The name.
-        description (sqlalchemy String): The description.
-        number_rooms (sqlalchemy Integer): The number of rooms.
-        number_bathrooms (sqlalchemy Integer): The number of bathrooms.
-        max_guest (sqlalchemy Integer): The maximum number of guests.
-        price_by_night (sqlalchemy Integer): The price by night.
+        city_id (sqlalchemy str): The place's city id.
+        user_id (sqlalchemy str): The place's user id.
+        name (sqlalchemy str): The name.
+        description (sqlalchemy str): The description.
+        number_rooms (sqlalchemy Int): The number of rooms.
+        number_bathrooms (sqlalchemy Int): The number of bathrooms.
+        max_guest (sqlalchemy Int): The maximum number of guests.
+        price_by_night (sqlalchemy Int): The price by night.
         latitude (sqlalchemy Float): The place's latitude.
         longitude (sqlalchemy Float): The place's longitude.
         reviews (sqlalchemy relationship): The Place-Review relationship.

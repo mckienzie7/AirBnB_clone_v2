@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""Defines the City class."""
+"""
+Defines the City class
+"""
+
+import models
 from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Defines the City class."""
-from models.base_model import Base
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
+import sqlalchemy
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import String
@@ -15,8 +15,8 @@ class City(BaseModel, Base):
 
     Attributes:
         __tablename__ (str): The name of the MySQL table to store Cities.
-        name (sqlalchemy String): The name of the City.
-        state_id (sqlalchemy String): The state id of the City.
+        name (sqlalchemy str): The name of the City.
+        state_id (sqlalchemy str): The state id of the City.
     """
     __tablename__ = "cities"
     name = Column(String(128), nullable=False)

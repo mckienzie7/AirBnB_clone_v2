@@ -3,6 +3,7 @@
 import models
 from uuid import uuid4
 from datetime import datetime
+import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column
 from sqlalchemy import DateTime
@@ -15,7 +16,7 @@ class BaseModel:
     """Defines the BaseModel class.
 
     Attributes:
-        id (sqlalchemy String): The BaseModel id.
+        id (sqlalchemy str): The BaseModel id.
         created_at (sqlalchemy DateTime): The datetime at creation.
         updated_at (sqlalchemy DateTime): The datetime of last update.
     """

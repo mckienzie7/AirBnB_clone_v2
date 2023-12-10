@@ -10,6 +10,23 @@ from os.path import exists
 env.host = ['3.85.1.161', '100.26.178.134']
 env.user = 'ubuntu'
 
+
+def do_pack():
+    """
+    Generate a .tgz archive
+    """
+    try:
+        from fabric.api import local
+        from datetime import datetime
+
+        local("mkdir -p versions")
+        date = datetime.now().strftime("%Y%m%d%H%M%S")
+        path = "versions/web_static_{}.tgz".format(date)
+        local("tar -cvzf {} web_static".format(path))
+        return path
+    except Exception:
+        return None
+
 def do_deploy(archive_path):
     """
     Distribute an archive to web servers

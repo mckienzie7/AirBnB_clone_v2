@@ -39,7 +39,7 @@ def do_deploy(archive_path):
         archive_name = archive_path.split("/")[-1]
         ext_file = archive_name.split(".")[0]
 
-        put(archive_path, "/tmp/{}".format(archive_name))
+        put(archive_path, "/tmp/".format(archive_name))
         run("sudo mkdir -p /data/web_static/releases/{}/".format(ext_file))
         run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
             .format(archive_name, ext_file))

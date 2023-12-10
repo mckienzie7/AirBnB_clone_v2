@@ -30,7 +30,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """
-    Distribute an archive to web servers
+    Distribute an archive to servers
     """
     if not exists(archive_path):
         return False

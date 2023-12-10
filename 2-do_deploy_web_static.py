@@ -27,6 +27,7 @@ def do_pack():
     except Exception:
         return None
 
+
 def do_deploy(archive_path):
     """
     Distribute an archive to web servers
@@ -41,14 +42,15 @@ def do_deploy(archive_path):
         put(archive_path, "/tmp/{}".format(archive_name))
         run("sudo mkdir -p /data/web_static/releases/{}/".format(ext_file))
         run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
-                .format(archive_name, ext_file))
+            .format(archive_name, ext_file))
         run("sudo rm /tmp/{}".format(archive_name))
         run("sudo mv /data/web_static/releases/{}/web_static/* "
             "/data/web_static/releases/{}/".format(ext_file, ext_file))
-        run("sudo rm -rf /data/web_static/releases/{}/web_static".format(ext_file))
+        run("sudo rm -rf /data/web_static/releases/{}/web_static"
+            .format(ext_file))
         run("sudo rm -rf /data/web_static/current")
         run("sudo ln -s /data/web_static/releases/{}/ /data/web_static/current"
-                .format(ext_file))
+            .format(ext_file))
     except Exception:
         return False
     return True

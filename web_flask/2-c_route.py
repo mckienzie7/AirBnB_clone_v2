@@ -23,13 +23,12 @@ def hbnb():
     return "HBNB"
 
 @app.route("/c/<text>", strict_slashes=False)
-def C_text(text):
+def c(text):
      """Displays 'C followed by <text> variables' """
-     textt = text.replace("_"," ")
-     return f'C {textt}'
-        
+    text = text.replace("_"," ")
+    return "C {}".format(text)
+	
 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
-

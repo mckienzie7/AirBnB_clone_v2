@@ -1,56 +1,30 @@
 #!/usr/bin/python3
 """
-Fabric Script to distribute an archive to web servers
+Fabric script based on the file 1-pack_web_static.py that distributes an
+archive to the web servers
 """
 
-
-from fabric.api import env, put, run
+from fabric.api import put, run, env
 from os.path import exists
-
-env.host = ['3.85.1.161', '100.26.178.134']
-env.user = 'ubuntu'
-
-
-def do_pack():
-    """
-    Generate a .tgz archive
-    """
-    try:
-        from fabric.api import local
-        from datetime import datetime
-
-        local("mkdir -p versions")
-        date = datetime.now().strftime("%Y%m%d%H%M%S")
-        path = "versions/web_static_{}.tgz".format(date)
-        local("tar -cvzf {} web_static".format(path))
-        return path
-    except Exception:
-        return None
+env.hosts = ['54.242.159.226', '3.84.222.31']
 
 
 def do_deploy(archive_path):
-    """
-    Distribute an archive to servers
-    """
-    if not exists(archive_path):
+    """distributes an archive to the web servers"""
+    if exists(archive_path) is False:
         return False
-
     try:
-        archive_name = archive_path.split("/")[-1]
-        ext_file = archive_name.split(".")[0]
-
-        put(archive_path, "/tmp/".format(archive_name))
-        run("sudo mkdir -p /data/web_static/releases/{}/".format(ext_file))
-        run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
-            .format(archive_name, ext_file))
-        run("sudo rm /tmp/{}".format(archive_name))
-        run("sudo mv /data/web_static/releases/{}/web_static/* "
-            "/data/web_static/releases/{}/".format(ext_file, ext_file))
-        run("sudo rm -rf /data/web_static/releases/{}/web_static"
-            .format(ext_file))
-        run("sudo rm -rf /data/web_static/current")
-        run("sudo ln -s /data/web_static/releases/{}/ /data/web_static/current"
-            .format(ext_file))
-    except Exception:
+        file_n = archive_path.split("/")[-1]
+        no_ext = file_n.split(".")[0]
+        path = "/data/web_static/releases/"
+        put(archive_path, '/tmp/')
+        run('mkdir -p {}{}/'.format(path, no_ext))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
+        run('rm /tmp/{}'.format(file_n))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
+        run('rm -rf {}{}/web_static'.format(path, no_ext))
+        run('rm -rf /data/web_static/current')
+        run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
+        return True
+    except:
         return False
-    return True
